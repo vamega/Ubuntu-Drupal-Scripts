@@ -11,4 +11,5 @@ sudo a2enmod userdir
 
 groupadd webdev
 usermod -a -G webdev $USERNAME
-chgrp webdev /home/$USERNAME/public_html
+usermod -a -G webdev $www-data
+chgrp -R webdev /home/$USERNAME/public_html/$1
