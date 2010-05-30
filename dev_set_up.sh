@@ -6,8 +6,8 @@ sudo tasksel install dns-server
 sudo apt-get install phpmyadmin
 sudo a2enmod userdir
 
-#Comment out the lines that turn off the php engine in the php5.conf file
-<IfModule mod_userdir\.c.+?/IfModule>
+#Comment out the lines that turn off the php engine in userdir the php5.conf file
+sed -i '/<IfModule mod_userdir.c>/,/<\/IfModule>/s/^/#/' /etc/apache2/mods-enabled/php5.conf
 
 groupadd webdev
 usermod -a -G webdev $USERNAME
