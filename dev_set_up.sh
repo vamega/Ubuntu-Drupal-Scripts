@@ -21,3 +21,5 @@ usermod -a -G webdev $USERNAME
 usermod -a -G webdev $www-data
 chgrp -R webdev /home/$USERNAME/public_html/$domain
 chmod -R 774 /home/$USERNAME/public_html/$domain
+chmod g+s /home/$USERNAME/public_html/$domain
+
