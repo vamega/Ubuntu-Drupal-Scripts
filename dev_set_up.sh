@@ -23,3 +23,21 @@ chgrp -R webdev /home/$USERNAME/public_html/$domain
 chmod -R 774 /home/$USERNAME/public_html/$domain
 chmod g+s /home/$USERNAME/public_html/$domain
 
+
+#DNS Configuration Commands start here
+sudo sed '1i\
+nameserver 127.0.0.1' /etc/resolv.conf > /etc/resolv.conf.temp
+sudo mv /etc/resolv.conf.temp /etc/resolv.conf
+
+zones='zone "testing.lan" IN {
+    type master;
+    file "/etc/bind/zones/home.lan.db";
+};
+
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/rev.1.168.192.in-addr.arpa";
+};'
+
+sudoecho "$zones" >> /etc/bind/named.conf.local
+sudo mkdir /etc/bind/zones
