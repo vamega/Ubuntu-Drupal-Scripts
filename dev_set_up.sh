@@ -88,8 +88,8 @@ mkdir /etc/bind/zones
 echo $testing_lan_domain > /etc/bind/zones/testing.lan.db
 echo $testing_lan_reverse > /etc/bind/zones/rev.1.168.192.in-addr.arpa
 
-sed -i "$a\"${domain} IN A 127.0.0.1" /etc/bind/zones/testing.lan.db
-sed -i "$a\1        IN PTR ${domain}.testing.lan." /etc/bind/zones/rev.0.0.127.in-addr.arpa
+sed -i "a\"${domain} IN A 127.0.0.1" /etc/bind/zones/testing.lan.db
+sed -i "a\1        IN PTR ${domain}.testing.lan." /etc/bind/zones/rev.0.0.127.in-addr.arpa
 
 #Apache Configuration files
 echo $apache_virtual_server > /etc/apache2/sites-available/$domain
