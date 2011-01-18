@@ -75,7 +75,7 @@ cp /home/$USER/public_html/$domain/sites/default/default.settings.php /home/$USE
 #Set up file permissions
 groupadd webdev
 usermod -a -G webdev $USER
-usermod -a -G webdev $www-data
+usermod -a -G webdev www-data
 chown -R $USER /home/$USER/public_html/$domain/sites/default/settings.php
 chgrp -R webdev /home/$USER/public_html/$domain
 chmod -R 774 /home/$USER/public_html/$domain
