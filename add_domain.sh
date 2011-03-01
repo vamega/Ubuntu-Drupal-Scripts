@@ -14,11 +14,13 @@ apache_virtual_server="<VirtualHost *:80>
 
 # Add entries to the DNS configuration files
 sed -i '$a\'"${domain}"' IN A 127.0.0.1' /etc/bind/zones/testing.lan.db
-sed -i '$a\1        IN PTR '"${domain}"'.testing.lan.' /etc/bind/zones/rev.0.0.127.in-addr.arpa
+sed -i '$a\1 IN PTR '"${domain}"'.testing.lan.' /etc/bind/zones/rev.0.0.127.in-addr.arpa
 
 # Add entries to apache config files\
 echo $apache_virtual_server > /etc/apache2/sites-available/$domain
 a2ensite $domain
 
 #Restart servers
-invokerc.d bind9 restart
+invoke-rc.d bind9 restart
+invoke-rc.d apache2 restart
+
